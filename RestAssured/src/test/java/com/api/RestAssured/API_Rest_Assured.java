@@ -1,5 +1,6 @@
 package com.api.RestAssured;
 
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import io.restassured.RestAssured;
@@ -25,11 +26,20 @@ public class API_Rest_Assured {
 		// Make a GET request call directly by using RequestSpecification.get() method.
 		//Response httpResponse = httpRequestSpecification.get("/Hyderabad");
 
-		//TO print the status code of received response
+		//TO print the status code of received response AND
+		//How to Validate Response Status Code?
 		int statusCode = httpResponse.getStatusCode();
 		System.out.println("Status Code : " + statusCode);
 		int statusCode2 = httpResponse.statusCode();
 		System.out.println("Second Status Code : " + statusCode2);
+		Assert.assertEquals(statusCode, 200, "InCorrect status code returned");
+
+		//How to Validate Response Status Line?
+		// Get the status line from the Response and store it in a variable called statusLine
+		String statusLine = httpResponse.getStatusLine();
+		System.out.println("Resonse Status Line : " + statusLine);
+		//Validate Response Status Line?
+		Assert.assertEquals(statusLine, "HTTP/1.1 200 OK", "Correct status code returned");
 
 		// Now let us print the body of the message to see what response
 		// we have recieved from the server
