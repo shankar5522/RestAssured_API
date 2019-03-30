@@ -4,6 +4,8 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import io.restassured.RestAssured;
+import io.restassured.http.Header;
+import io.restassured.http.Headers;
 import io.restassured.http.Method;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
@@ -26,14 +28,16 @@ public class API_Rest_Assured {
 		// Make a GET request call directly by using RequestSpecification.get() method.
 		//Response httpResponse = httpRequestSpecification.get("/Hyderabad");
 
+		//
 		//TO print the status code of received response AND
-		//How to Validate Response Status Code?
+		//How to Validate Response Status Code? using statusCode() & getStatusCode() method
 		int statusCode = httpResponse.getStatusCode();
 		System.out.println("Status Code : " + statusCode);
 		int statusCode2 = httpResponse.statusCode();
 		System.out.println("Second Status Code : " + statusCode2);
 		Assert.assertEquals(statusCode, 200, "InCorrect status code returned");
 
+		//
 		//How to Validate Response Status Line?
 		// Get the status line from the Response and store it in a variable called statusLine
 		String statusLine = httpResponse.getStatusLine();
@@ -41,6 +45,27 @@ public class API_Rest_Assured {
 		//Validate Response Status Line?
 		Assert.assertEquals(statusLine, "HTTP/1.1 200 OK", "Correct status code returned");
 
+		//
+		//Validate Response Header using Rest Assured? using header() and getHeaders() Method
+		String contentType = httpResponse.header("Content-Type");
+		System.out.println("Content Type : " + contentType);
+
+		String serverType = httpResponse.getHeader("Server");
+		System.out.println("Server Type : " + serverType);
+
+		String languageAccepted = httpResponse.header("Content-Encoding");
+		System.out.println("Language Accepted : " + languageAccepted);
+
+		//print all the headers using headers() & getHeaders() method
+		System.out.println("----------------ALL THE HEADERS----------------------");
+		//Headers ListHeaders = httpResponse.getHeaders();
+		Headers ListHeaders = httpResponse.headers();
+		for (Header header : ListHeaders) {
+			System.out.println(header.getName() + "     " + header.getValue());
+		}
+		System.out.println("----------------END OF ALL THE HEADERS----------------------");
+
+		//
 		// Now let us print the body of the message to see what response
 		// we have recieved from the server
 		String responseBody = httpResponse.getBody().asString();
