@@ -22,6 +22,15 @@ public class API_Rest_Assured {
 		// This will return the Response from the server. Store the response in a variable.
 		Response httpResponse = httpRequestSpecification.request(Method.GET, "/Hyderabad");
 
+		// Make a GET request call directly by using RequestSpecification.get() method.
+		//Response httpResponse = httpRequestSpecification.get("/Hyderabad");
+
+		//TO print the status code of received response
+		int statusCode = httpResponse.getStatusCode();
+		System.out.println("Status Code : " + statusCode);
+		int statusCode2 = httpResponse.statusCode();
+		System.out.println("Second Status Code : " + statusCode2);
+
 		// Now let us print the body of the message to see what response
 		// we have recieved from the server
 		String responseBody = httpResponse.getBody().asString();
