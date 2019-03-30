@@ -8,6 +8,7 @@ import io.restassured.http.Header;
 import io.restassured.http.Headers;
 import io.restassured.http.Method;
 import io.restassured.response.Response;
+import io.restassured.response.ResponseBody;
 import io.restassured.specification.RequestSpecification;
 
 public class API_Rest_Assured {
@@ -49,6 +50,7 @@ public class API_Rest_Assured {
 		//Validate Response Header using Rest Assured? using header() and getHeaders() Method
 		String contentType = httpResponse.header("Content-Type");
 		System.out.println("Content Type : " + contentType);
+		Assert.assertEquals(contentType, "application/json"); //Validation
 
 		String serverType = httpResponse.getHeader("Server");
 		System.out.println("Server Type : " + serverType);
@@ -66,9 +68,21 @@ public class API_Rest_Assured {
 		System.out.println("----------------END OF ALL THE HEADERS----------------------");
 
 		//
-		// Now let us print the body of the message to see what response
-		// we have recieved from the server
+		// Read JSON Response Body using Rest Assured using body() and getBody() methods
 		String responseBody = httpResponse.getBody().asString();
-		System.out.println("My Response BODY is : " + responseBody);
+		System.out.println("My Response BODY 1 : " + responseBody);
+
+		String body1 = httpResponse.body().asString();
+		System.out.println("My Response BODY 2 " + body1);
+
+		// we can do like these also
+		//ResponseBody body3 = httpResponse.getBody();
+		ResponseBody body3 = httpResponse.body();
+		System.out.println("My Resonse Body 3 : " + body3.asString());
+
+		//How to Validate Response Body contains some String?
+		Assert.assertEquals(body1.contains("Hyderabad"), true);
+		//Assert.assertEquals(body1.contains("Hyderabad"), "Hyderabad");  //<- throwing error but why?
+
 	}
 }
