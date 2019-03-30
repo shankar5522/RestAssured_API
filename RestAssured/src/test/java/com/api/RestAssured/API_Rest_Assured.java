@@ -7,6 +7,7 @@ import io.restassured.RestAssured;
 import io.restassured.http.Header;
 import io.restassured.http.Headers;
 import io.restassured.http.Method;
+import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 import io.restassured.response.ResponseBody;
 import io.restassured.specification.RequestSpecification;
@@ -83,6 +84,21 @@ public class API_Rest_Assured {
 		//How to Validate Response Body contains some String?
 		Assert.assertEquals(body1.contains("Hyderabad"), true);
 		//Assert.assertEquals(body1.contains("Hyderabad"), "Hyderabad");  //<- throwing error but why?
+
+		//How to Extract a Node text from Response using JsonPath?
+		JsonPath jsonPath = httpResponse.jsonPath();
+		String city = jsonPath.get("City");
+		System.out.println("City Received From JsonPath : " + city);
+
+		// Validate the response
+		Assert.assertEquals(city, "Hyderabad", "Incorrect city name received in the Response");
+
+		String humidity = jsonPath.get("Humidity");
+		System.out.println("Humidity Received From JsonPath : " + humidity);
+
+		// it return null because JsonPath only use to get the data from resonse body not from header
+		String contentType1 = jsonPath.get("Content-Type");
+		System.out.println("Humidity Received From JsonPath : " + contentType1);
 
 	}
 }
