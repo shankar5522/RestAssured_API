@@ -25,10 +25,10 @@ public class API_Rest_Assured {
 
 		// Make a request to the server by specifying the method Type and the method URL.
 		// This will return the Response from the server. Store the response in a variable.
-		Response httpResponse = httpRequestSpecification.request(Method.GET, "/Hyderabad");
+		//Response httpResponse = httpRequestSpecification.request(Method.GET, "/Hyderabad");
 
 		// or we can write like this below to Make a GET request call directly by using RequestSpecification.get() method.
-		//Response httpResponse = httpRequestSpecification.get("/Hyderabad");
+		Response httpResponse = httpRequestSpecification.get("/Hyderabad");
 
 		//
 		//TO print the status code of received response AND
