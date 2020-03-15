@@ -16,11 +16,13 @@ public class API_Rest_Assured {
 
 	public static void main(String[] args) {
 		// Specify the base URL to the RESTful web service
+		//Class
 		RestAssured.baseURI = "http://restapi.demoqa.com/utilities/weather/city";
 
 		// Get the RequestSpecification of the request that you want to sent
 		// to the server. The server is specified by the BaseURI that we have
 		// specified in the above step.
+		//This is Interface
 		RequestSpecification httpRequestSpecification = RestAssured.given();
 
 		// Make a request to the server by specifying the method Type and the method URL.
@@ -28,6 +30,7 @@ public class API_Rest_Assured {
 		//Response httpResponse = httpRequestSpecification.request(Method.GET, "/Hyderabad");
 
 		// or we can write like this below to Make a GET request call directly by using RequestSpecification.get() method.
+		//Interface
 		Response httpResponse = httpRequestSpecification.get("/Hyderabad");
 
 		//
@@ -45,7 +48,7 @@ public class API_Rest_Assured {
 		String statusLine = httpResponse.getStatusLine();
 		System.out.println("Resonse Status Line : " + statusLine);
 		//Validate Response Status Line?
-		Assert.assertEquals(statusLine, "HTTP/1.1 200 OK", "Correct status code returned");
+		Assert.assertEquals(statusLine, "HTTP/1.1 200 OK", "InCorrect status code returned");
 
 		//
 		//Validate Response Header using Rest Assured? using header() and getHeaders() Method

@@ -27,12 +27,12 @@ public class API_Rest_Assured_PostRequest {
 		RequestSpecification request = RestAssured.given();
 
 		JSONObject requestParams = new JSONObject();
-		requestParams.put("FirstName", "Virender11");
+		requestParams.put("FirstName", "Virender1101");
 		requestParams.put("LastName", "Singh11");
 		requestParams.put("UserName", "sdimpleuser2dd201111");
 		requestParams.put("Password", "password111");
 		requestParams.put("Password", "password111"); // put() method is from hashpmap, Hence removing duplicate data from map 
-		requestParams.put("Email", "sample2ee26d911@gmail.com");
+		requestParams.put("Email", "sample2ee26d9103@gmail.com");
 
 		System.out.println(requestParams.toString());
 		System.out.println("!!!!!! " + requestParams.toJSONString());
